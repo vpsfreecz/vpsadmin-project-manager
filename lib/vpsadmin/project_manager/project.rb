@@ -20,6 +20,8 @@ module VpsAdmin
 
       def version
         cached(:version) do
+          next('n/a') if @env.no_version
+
           if @env.version.is_a?(::Proc)
             v = project_dir do
               @env.version.call
@@ -34,12 +36,24 @@ module VpsAdmin
       end
 
       def version=(v)
+        return if @env.no_version
+
         unless @env.set_version.is_a?(::Proc)
           raise RuntimeError, 'version= is not implemented'
         end
         
         project_dir { @env.set_version.call(v) }
         @cache.delete(:version)
+      end
+
+      def commit_version(msg)
+        return if @env.no_version
+
+        unless @env.version_file.is_a?(::String)
+          raise RuntimeError, 'commit_version is not implemented'
+        end
+        
+        project_dir { exec("git commit -m \"#{msg}\" #{@env.version_file}") }
       end
 
       protected

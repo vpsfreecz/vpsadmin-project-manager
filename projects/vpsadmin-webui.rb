@@ -13,4 +13,6 @@ project 'vpsAdmin WebUI' do
       File.read(VERSION_FILE).sub!(VERSION_RX, "define(\"VERSION\", '#{v}');")
     )
   end
+
+  version_file VERSION_FILE
 end

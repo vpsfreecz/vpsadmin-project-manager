@@ -1,6 +1,6 @@
 module VpsAdmin::ProjectManager
   class ProjectEnv
-    %i(type version set_version).each do |attr|
+    %i(type no_version version set_version version_file).each do |attr|
       define_method(attr) do |v = nil, &block|
         if v && block
           fail 'provide either an argument or block'

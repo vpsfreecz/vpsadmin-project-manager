@@ -24,6 +24,12 @@ module VpsAdmin::ProjectManager
         end
       end
 
+      def commit_version(msg)
+        project_dir do
+          exec("git commit -m \"#{msg}\" #{version_file}")
+        end
+      end
+
       protected
       def version_file
         Dir.glob('lib/**/version.rb').first
