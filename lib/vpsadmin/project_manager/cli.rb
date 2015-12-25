@@ -14,6 +14,7 @@ module VpsAdmin
 
     class Cli
       subcommand 'status', "Show projects' status", Commands::Status
+      subcommand 'version', "Set version for all projects", Commands::Version
     end
   end
 end

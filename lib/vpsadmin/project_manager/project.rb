@@ -33,6 +33,15 @@ module VpsAdmin
         end
       end
 
+      def version=(v)
+        unless @env.set_version.is_a?(::Proc)
+          raise RuntimeError, 'version= is not implemented'
+        end
+        
+        project_dir { @env.set_version.call(v) }
+        @cache.delete(:version)
+      end
+
       protected
       def exec(cmd)
         project_dir { `#{cmd}` }
