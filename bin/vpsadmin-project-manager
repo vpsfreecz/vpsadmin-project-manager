@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require_relative '../lib/vpsadmin/project_manager'
+
+VpsAdmin::ProjectManager::Cli.run
