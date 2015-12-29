@@ -13,6 +13,7 @@ module VpsAdmin
     )].each {|file| require file }
 
     class Cli
+      subcommand 'ls', "List project names", Commands::Ls
       subcommand 'status', "Show projects' status", Commands::Status
       subcommand 'version', "Set version for all projects", Commands::Version
     end

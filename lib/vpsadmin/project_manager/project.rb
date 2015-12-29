@@ -1,6 +1,8 @@
 module VpsAdmin
   module ProjectManager
     class Project
+      attr_reader :name
+
       def initialize(name, env, label = nil, &block)
         @name = name
         @label = label
