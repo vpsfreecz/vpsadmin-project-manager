@@ -6,7 +6,7 @@ module VpsAdmin::ProjectManager
       VpsAdmin::ProjectManager.projects.each do |p|
         puts "* #{p.label}"
         
-        p.send(:project_dir) do
+        p.project_dir do
           puts `#{command}`
         end
 

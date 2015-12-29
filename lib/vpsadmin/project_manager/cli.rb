@@ -13,6 +13,7 @@ module VpsAdmin
     )].each {|file| require file }
 
     class Cli
+      subcommand 'check', "Check if projects are ready for release", Commands::Check
       subcommand 'exec', "Execute command for each project", Commands::Exec
       subcommand 'ls', "List project names", Commands::Ls
       subcommand 'status', "Show projects' status", Commands::Status

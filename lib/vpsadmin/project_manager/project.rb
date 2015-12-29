@@ -48,6 +48,10 @@ module VpsAdmin
         @cache.delete(:version)
       end
 
+      def version?
+        @env.no_version ? false : true
+      end
+
       def commit_version(msg)
         return if @env.no_version
 
@@ -58,17 +62,23 @@ module VpsAdmin
         project_dir { exec("git commit -m \"#{msg}\" #{@env.version_file}") }
       end
 
-      protected
-      def exec(cmd)
-        project_dir { `#{cmd}` }
-      end
-
       def project_dir
+        return yield if @project_dir
+
+        @project_dir = true
+
         d = Dir.pwd
         Dir.chdir(File.join(d, @name))
         ret = yield
         Dir.chdir(d)
+
+        @project_dir = false
         ret
+      end
+
+      protected
+      def exec(cmd)
+        project_dir { `#{cmd}` }
       end
 
       def cached(name)
