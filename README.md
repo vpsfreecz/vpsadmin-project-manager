@@ -1,5 +1,4 @@
 vpsAdmin Project Manager
 ========================
-Program used for release management. It is used to check that all vpsAdmin parts
-have correct version, changelog and license. It also automates merging of
-branches, tagging and version setting.
+vpsAdmin consists of multiple projects and this CLI utility is used to manage,
+view and release these projects.
