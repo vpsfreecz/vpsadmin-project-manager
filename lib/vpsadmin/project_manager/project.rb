@@ -59,7 +59,7 @@ module VpsAdmin
           raise RuntimeError, 'commit_version is not implemented'
         end
         
-        project_dir { exec("git commit -m \"#{msg}\" #{@env.version_file}") }
+        project_dir { puts exec("git commit -m \"#{msg}\" #{@env.version_file}") }
       end
 
       def project_dir
